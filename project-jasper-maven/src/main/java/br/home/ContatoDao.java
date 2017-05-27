@@ -10,7 +10,7 @@ import java.util.List;
 public class ContatoDao {
 	
 	private static final String SQL_BUSCA_TODOS = "SELECT * FROM AGENDA";
-	private static final String SQL_INSERE = "INSERT INTO agenda (id, nome, telefone) VALUES (?, ?, ?)";
+	private static final String SQL_INSERE = "INSERT INTO agenda(id, nome, telefone) VALUES (?, ?, ?)";
 	private static final String SQL_EXCLUI = "DELETE FROM agenda WHERE id = ?";
 	private static final String SQL_ATUALIZA = "UPDATE agenda SET NOME = ? WHERE id = ?";
 	private Connection con = ConexaoDB.getInstance().getConnection();;
@@ -42,15 +42,24 @@ public class ContatoDao {
 	
 	
 	public void insere(Contato c){
+		
+//		String sql = "insert into agenda(id, nome, telefone) values("
+//				+c.getId()+","
+//				+c.getNome()+","
+//				+c.getTelefone()+");";
+//		System.out.println(sql);
+		
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(SQL_INSERE);
 			ps.setInt(1, c.getId());
 			ps.setString(2, c.getNome());
 			ps.setString(3, c.getTelefone());
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		
 	}
 	
