@@ -43,12 +43,6 @@ public class ContatoDao {
 	
 	public void insere(Contato c){
 		
-//		String sql = "insert into agenda(id, nome, telefone) values("
-//				+c.getId()+","
-//				+c.getNome()+","
-//				+c.getTelefone()+");";
-//		System.out.println(sql);
-		
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(SQL_INSERE);
