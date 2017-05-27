@@ -117,6 +117,10 @@ public class TelaPrincipal extends TelaPrincipalBase {
 
 	protected void excluir() {// excluindo da tela
 		this.modelo.remover(this.contatoSelecionado);// removendo do contato
+		
+		//exclui contato no banco de dados com sql
+		cd = new ContatoDao();
+		cd.exclui(contatoSelecionado.getId());
 
 		limparCampos();
 	}
@@ -144,7 +148,7 @@ public class TelaPrincipal extends TelaPrincipalBase {
 			//adiciona contato na tabela
 			this.modelo.adicionar(c);
 			
-			//insere com sql
+			//insere no banco de dados com sql
 			cd.insere(c);
 			
 			limparCampos();
@@ -159,6 +163,9 @@ public class TelaPrincipal extends TelaPrincipalBase {
 			this.contatoSelecionado.setId(intId);
 			this.contatoSelecionado.setNome(strNome);
 			this.contatoSelecionado.setTelefone(strTelefone);
+			
+			//altera no banco de dados com sql
+			cd.atualiza(intId, contatoSelecionado);
 
 			limparCampos();
 			this.modelo.fireTableDataChanged();
