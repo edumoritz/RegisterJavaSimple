@@ -16,6 +16,7 @@ public class TelaPrincipal extends TelaPrincipalBase {
 
 	private Contato contatoSelecionado;
 	private ContatoModel modelo;
+	private ContatoDao cd;
 
 	public TelaPrincipal() {
 		super();// executar o construtor da super classe que é telaprincipal
@@ -51,7 +52,6 @@ public class TelaPrincipal extends TelaPrincipalBase {
 		List<Contato> lista = dao.getTodos();
 		
 		this.modelo = new ContatoModel(lista);
-//		this.modelo = new ContatoModel();
 		super.table.setModel(modelo);
 		super.table.addMouseListener(new MouseAdapter() {// MouseAdapter é usado
 															// para não
@@ -122,6 +122,7 @@ public class TelaPrincipal extends TelaPrincipalBase {
 	}
 
 	protected void salvar() {
+		cd = new ContatoDao();
 		if (contatoSelecionado == null) {
 			Contato c = new Contato();
 			// trim = aparar{esse comando
@@ -139,8 +140,13 @@ public class TelaPrincipal extends TelaPrincipalBase {
 			c.setId(intId);
 			c.setNome(strNome);
 			c.setTelefone(strTelefone);
-
+			
+			//adiciona contato na tabela
 			this.modelo.adicionar(c);
+			
+			//insere com sql
+			cd.insere(c);
+			
 			limparCampos();
 		} else {
 			// altera contato selecionado
