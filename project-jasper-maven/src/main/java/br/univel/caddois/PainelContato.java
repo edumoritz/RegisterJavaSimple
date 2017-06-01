@@ -76,12 +76,11 @@ public class PainelContato extends PainelContatoBase{
 		super.txfNome.setText(c.getNome());
 		super.txfTelefone.setText(c.getTelefone());
 
-		super.btnExcluir.setEnabled(true);// habilita o botao excluir
-		//System.out.println("passou aqui");
+		super.btnExcluir.setEnabled(true);
 	}
 
 	private void configurarBotoes() {
-		super.btnNovo.addActionListener(new ActionListener() {// classe anonima
+		super.btnNovo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -89,8 +88,7 @@ public class PainelContato extends PainelContatoBase{
 				novo();
 			}
 		});
-		super.btnSalvar.addActionListener(new ActionListener() {// classe
-																// anonima
+		super.btnSalvar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -98,8 +96,7 @@ public class PainelContato extends PainelContatoBase{
 				salvar();
 			}
 		});
-		super.btnExcluir.addActionListener(new ActionListener() {// classe
-																	// anonima
+		super.btnExcluir.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -109,10 +106,9 @@ public class PainelContato extends PainelContatoBase{
 		});
 	}
 
-	protected void excluir() {// excluindo da tela
-		this.modelo.remover(this.contatoSelecionado);// removendo do contato
+	protected void excluir() {
+		this.modelo.remover(this.contatoSelecionado);
 		
-		//exclui contato no banco de dados com sql
 		cd = new ContatoDao();
 		cd.exclui(contatoSelecionado.getId());
 
@@ -123,12 +119,6 @@ public class PainelContato extends PainelContatoBase{
 		cd = new ContatoDao();
 		if (contatoSelecionado == null) {
 			Contato c = new Contato();
-			// trim = aparar{esse comando
-			// remove os espaços no
-			// inicio e fim da string,
-			// muito util para ajustar
-			// emails e logins que
-			// vieram de ctrl+v}
 			String strId = txfId.getText().trim();
 			String strNome = txfNome.getText().trim();
 			String strTelefone = txfTelefone.getText().trim();
@@ -139,15 +129,12 @@ public class PainelContato extends PainelContatoBase{
 			c.setNome(strNome);
 			c.setTelefone(strTelefone);
 			
-			//adiciona contato na tabela
 			this.modelo.adicionar(c);
 			
-			//insere no banco de dados com sql
 			cd.insere(c);
 			
 			limparCampos();
 		} else {
-			// altera contato selecionado
 			String strId = txfId.getText().trim();
 			String strNome = txfNome.getText().trim();
 			String strTelefone = txfTelefone.getText().trim();
@@ -158,7 +145,6 @@ public class PainelContato extends PainelContatoBase{
 			this.contatoSelecionado.setNome(strNome);
 			this.contatoSelecionado.setTelefone(strTelefone);
 			
-			//altera no banco de dados com sql
 			cd.atualiza(intId, contatoSelecionado);
 
 			limparCampos();
@@ -178,6 +164,6 @@ public class PainelContato extends PainelContatoBase{
 		super.txfNome.setText("");
 		super.txfTelefone.setText("");
 
-		super.btnExcluir.setEnabled(false);// desabilita botao excluir
+		super.btnExcluir.setEnabled(false);
 	}
 }

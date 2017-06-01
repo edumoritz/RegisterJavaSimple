@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -20,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 public class PainelContatoBase extends JPanel {
 	
 	protected static final String CARREGADO_PARA_ALTERACAO = "Carregado para alteração";
-	//private JPanel contentPane;
 	protected JTextField txfId;
 	protected JTextField txfNome;
 	protected JTextField txfTelefone;
@@ -37,11 +35,9 @@ public class PainelContatoBase extends JPanel {
 	 * Create the panel.
 	 */
 	public PainelContatoBase() {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
 		menuBar = new JMenuBar();
-		//setJMenuBar(menuBar);
 		
 		mnArquivo = new JMenu("Arquivo");
 		menuBar.add(mnArquivo);
@@ -51,9 +47,7 @@ public class PainelContatoBase extends JPanel {
 		
 		mntmExportarpdf = new JMenuItem("ExportarPDF");
 		mnArquivo.add(mntmExportarpdf);
-		//contentPane = new JPanel();
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0};
