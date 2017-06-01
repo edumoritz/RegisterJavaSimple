@@ -58,7 +58,7 @@ public class ReportManager {
 	public void exportarCustom(){
 		String strFile = "C:\\Users\\Eduardo\\JaspersoftWorkspace\\MyReports\\CustomFields.jasper";
 		
-		//Pegar os valores de contato
+		//Pegar os valores de contato passa para CustomContatoReports
 		ContatoDao dao = new ContatoDao();
 		List<Contato> lista = dao.getTodos();
 		

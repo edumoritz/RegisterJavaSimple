@@ -14,7 +14,7 @@ public class ContatoDao {
 	private static final String SQL_EXCLUI = "DELETE FROM agenda WHERE id = ?";
 	private static final String SQL_ATUALIZA = "UPDATE agenda SET NOME = ? WHERE id = ?";
 	private static final String SQL_ATUALIZA_TEL = "UPDATE agenda SET telefone = ? WHERE id = ?";
-	private Connection con = ConexaoDB.getInstance().getConnection();;
+	private Connection con = ConexaoDB.getInstance().getConnection();
 	
 
 	public List<Contato> getTodos(){
