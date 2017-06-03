@@ -48,6 +48,8 @@ public class NovaTelaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
+		/*Botão Contato que adiciona aba contato*/
+		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		panel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
@@ -57,7 +59,7 @@ public class NovaTelaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				adicionarAbaContato();
+				adicionarAbaContato();//chama metodo de adicionar contato
 			}
 		});
 		panel.add(btnContato);
