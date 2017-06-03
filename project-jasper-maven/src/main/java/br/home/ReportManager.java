@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import brunivel.reports.custom.CustomContatoReports;
+import br.univel.reports.custom.CustomContatoReports;
 
 import com.ibm.icu.text.SimpleDateFormat;
 
