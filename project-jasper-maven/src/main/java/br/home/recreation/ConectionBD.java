@@ -14,8 +14,8 @@ public final class ConectionBD {
 		try {
 			this.con = DriverManager.getConnection(
 					"jdbc:postgresql:"+
-					"//localhost:5432/agenda",
-					"postgres","banco");
+					"//localhost:5432/Agenda",
+					"postgres","univel");
 			
 			Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 				

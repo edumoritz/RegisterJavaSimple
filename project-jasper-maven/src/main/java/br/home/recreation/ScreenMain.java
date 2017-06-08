@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import br.home.ReportManager;
+import br.univel.login.BlockPanel;
+import br.univel.login.TelaComLogin;
 
 public class ScreenMain extends JFrame {
 
