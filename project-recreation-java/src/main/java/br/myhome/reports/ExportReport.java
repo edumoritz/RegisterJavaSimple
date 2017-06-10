@@ -1,4 +1,4 @@
-package br.home.recreation;
+package br.myhome.reports;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -6,18 +6,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import br.home.ConexaoDB;
-
+import br.myhome.dao.ConectionBD;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
 public class ExportReport {
-
-	private static final String JASPER_CONTACT = "C:\\Users\\Eduardo\\JaspersoftWorkspace\\MyReports\\ReportContact.jasper";
-	private static final String JASPER_PRODUCT = "C:\\Users\\Eduardo\\JaspersoftWorkspace\\MyReports\\ReportProduct.jasper";
+	private static final String JASPER_CONTACT = "C:\\Users\\Eduardo\\JaspersoftWorkspace\\MyReports\\ContactsReport.jasper";
+	private static final String JASPER_PRODUCT = "C:\\Users\\Eduardo\\JaspersoftWorkspace\\MyReports\\ProductsReport.jasper";
 
 	public void exportContact() {
 		JasperPrint jasperPrintPDF = getPrint();
@@ -36,7 +33,7 @@ public class ExportReport {
 	}
 
 	private JasperPrint getPrint() {
-		Connection con = ConexaoDB.getInstance().getConnection();
+		Connection con = ConectionBD.getInstance().getConnection();
 
 		try {
 			return JasperFillManager.fillReport(JASPER_CONTACT, null, con);
@@ -78,7 +75,7 @@ public class ExportReport {
 	}
 
 	private JasperPrint getPrintP() {
-		Connection con = ConexaoDB.getInstance().getConnection();
+		Connection con = ConectionBD.getInstance().getConnection();
 
 		try {
 			return JasperFillManager.fillReport(JASPER_PRODUCT, null, con);
