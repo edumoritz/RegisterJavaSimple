@@ -5,27 +5,25 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
-public class PanelBasePt extends JPanel {
+public class PanelBaseCt extends JPanel {
 	
 	protected static final String CARREGADO_PARA_ALTERACAO = "Carregando para alteração";
-	protected JTable table;
 	protected JTextField txtId;
 	protected JTextField txtNome;
-	protected JTextField txtValor;
-	protected JLabel lblAlerta;
+	protected JTextField txtTelefone;
+	protected JTable table;
 	protected JButton btnNew;
 	protected JButton btnSave;
 	protected JButton btnDelete;
-	private JPanel panelMaginTop;
+	protected JLabel lblCarregandoParaAlterao;
 
-	public PanelBasePt() {
+	public PanelBaseCt() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
@@ -33,23 +31,24 @@ public class PanelBasePt extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		panelMaginTop = new JPanel();
-		GridBagConstraints gbc_panelMaginTop = new GridBagConstraints();
-		gbc_panelMaginTop.insets = new Insets(0, 0, 5, 0);
-		gbc_panelMaginTop.fill = GridBagConstraints.BOTH;
-		gbc_panelMaginTop.gridx = 0;
-		gbc_panelMaginTop.gridy = 0;
-		add(panelMaginTop, gbc_panelMaginTop);
+		JPanel PanelMarginTop = new JPanel();
+		GridBagConstraints gbc_PanelMarginTop = new GridBagConstraints();
+		gbc_PanelMarginTop.insets = new Insets(0, 0, 5, 0);
+		gbc_PanelMarginTop.fill = GridBagConstraints.BOTH;
+		gbc_PanelMarginTop.gridx = 0;
+		gbc_PanelMarginTop.gridy = 0;
+		add(PanelMarginTop, gbc_PanelMarginTop);
 		
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.anchor = GridBagConstraints.SOUTH;
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
-		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 1;
 		add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 88, 0, 0};
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -64,7 +63,6 @@ public class PanelBasePt extends JPanel {
 		panel.add(lblId, gbc_lblId);
 		
 		txtId = new JTextField();
-		txtId.setMinimumSize(new Dimension(30, 20));
 		GridBagConstraints gbc_txtId = new GridBagConstraints();
 		gbc_txtId.anchor = GridBagConstraints.WEST;
 		gbc_txtId.insets = new Insets(0, 0, 5, 5);
@@ -73,14 +71,14 @@ public class PanelBasePt extends JPanel {
 		panel.add(txtId, gbc_txtId);
 		txtId.setColumns(5);
 		
-		lblAlerta = new JLabel(CARREGADO_PARA_ALTERACAO);
-		lblAlerta.setForeground(Color.RED);
-		GridBagConstraints gbc_lblAlerta = new GridBagConstraints();
-		gbc_lblAlerta.anchor = GridBagConstraints.WEST;
-		gbc_lblAlerta.insets = new Insets(0, 0, 5, 0);
-		gbc_lblAlerta.gridx = 2;
-		gbc_lblAlerta.gridy = 0;
-		panel.add(lblAlerta, gbc_lblAlerta);
+		lblCarregandoParaAlterao = new JLabel(CARREGADO_PARA_ALTERACAO);
+		lblCarregandoParaAlterao.setForeground(Color.RED);
+		GridBagConstraints gbc_lblCarregandoParaAlterao = new GridBagConstraints();
+		gbc_lblCarregandoParaAlterao.anchor = GridBagConstraints.WEST;
+		gbc_lblCarregandoParaAlterao.insets = new Insets(0, 0, 5, 0);
+		gbc_lblCarregandoParaAlterao.gridx = 2;
+		gbc_lblCarregandoParaAlterao.gridy = 0;
+		panel.add(lblCarregandoParaAlterao, gbc_lblCarregandoParaAlterao);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		GridBagConstraints gbc_lblNome = new GridBagConstraints();
@@ -100,22 +98,22 @@ public class PanelBasePt extends JPanel {
 		panel.add(txtNome, gbc_txtNome);
 		txtNome.setColumns(10);
 		
-		JLabel lblValor = new JLabel("Valor:");
-		GridBagConstraints gbc_lblValor = new GridBagConstraints();
-		gbc_lblValor.anchor = GridBagConstraints.EAST;
-		gbc_lblValor.insets = new Insets(0, 0, 0, 5);
-		gbc_lblValor.gridx = 0;
-		gbc_lblValor.gridy = 2;
-		panel.add(lblValor, gbc_lblValor);
+		JLabel lblTelefone = new JLabel("Telefone:");
+		GridBagConstraints gbc_lblTelefone = new GridBagConstraints();
+		gbc_lblTelefone.anchor = GridBagConstraints.EAST;
+		gbc_lblTelefone.insets = new Insets(0, 0, 0, 5);
+		gbc_lblTelefone.gridx = 0;
+		gbc_lblTelefone.gridy = 2;
+		panel.add(lblTelefone, gbc_lblTelefone);
 		
-		txtValor = new JTextField();
-		GridBagConstraints gbc_txtValor = new GridBagConstraints();
-		gbc_txtValor.anchor = GridBagConstraints.WEST;
-		gbc_txtValor.insets = new Insets(0, 0, 0, 5);
-		gbc_txtValor.gridx = 1;
-		gbc_txtValor.gridy = 2;
-		panel.add(txtValor, gbc_txtValor);
-		txtValor.setColumns(15);
+		txtTelefone = new JTextField();
+		GridBagConstraints gbc_txtTelefone = new GridBagConstraints();
+		gbc_txtTelefone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtTelefone.insets = new Insets(0, 0, 0, 5);
+		gbc_txtTelefone.gridx = 1;
+		gbc_txtTelefone.gridy = 2;
+		panel.add(txtTelefone, gbc_txtTelefone);
+		txtTelefone.setColumns(15);
 		
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
@@ -128,7 +126,7 @@ public class PanelBasePt extends JPanel {
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0};
 		gbl_panel_1.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		btnNew = new JButton("New");

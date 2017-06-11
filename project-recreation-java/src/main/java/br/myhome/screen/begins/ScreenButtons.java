@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import br.myhome.activator.ActivatorCt;
 import br.myhome.activator.ActivatorPt;
 import br.myhome.reports.ExportReport;
 import br.myhome.screen.PanelWrepper;
@@ -100,7 +102,28 @@ public class ScreenButtons extends JFrame {
 	}
 
 	protected void addContact() {
+		JPanel panelContact = new ActivatorCt();
+		final PanelWrepper wrapper = new PanelWrepper();
 		
+		wrapper.setConteudo(panelContact);
+		wrapper.setTitulo("Cadastro de Contatos");
+		
+		wrapper.setActionClose(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(wrapper);
+			}
+		});
+		wrapper.setActionExport(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ExportReport er = new ExportReport();
+				er.exportContact();
+			}
+		});
+		tabbedPane.add("Contact", wrapper);
 	}
 
 }
