@@ -1,8 +1,6 @@
 package br.myhome.screen.login;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -74,7 +72,7 @@ public class ScreenLogin extends JFrame {
 		scrollPane.setViewportView(tree);
 	}
 
-	protected void bloquear() {
+	public void bloquear() {
 		BlockPanel blockPane = new BlockPanel();
 		
 		Runnable r = new Runnable() {
@@ -83,6 +81,7 @@ public class ScreenLogin extends JFrame {
 				System.out.println("Run!");
 			}
 		};
+		
 		
 		super.setGlassPane(blockPane);
 		blockPane.setVisible(true);

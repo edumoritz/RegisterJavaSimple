@@ -5,16 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import br.myhome.activator.ActivatorCt;
 import br.myhome.activator.ActivatorPt;
 import br.myhome.reports.ExportReport;
 import br.myhome.screen.PanelWrepper;
-
+import br.myhome.screen.login.BlockPanel;
 import javax.swing.JTabbedPane;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,6 +20,7 @@ public class ScreenButtons extends JFrame {
 
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
+	private BlockPanel login;
 
 	/**
 	 * Launch the application.
@@ -39,9 +38,6 @@ public class ScreenButtons extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public ScreenButtons() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -57,6 +53,9 @@ public class ScreenButtons extends JFrame {
 		JButton btnContato = new JButton("Contato");
 		btnContato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				login = new BlockPanel();
+				setGlassPane(login);
+				login.setVisible(true);
 				addContact();
 			}
 		});
@@ -65,6 +64,9 @@ public class ScreenButtons extends JFrame {
 		JButton btnProduto = new JButton("Produto");
 		btnProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				login = new BlockPanel();
+				setGlassPane(login);
+				login.setVisible(true);
 				addProduct();
 			}
 		});

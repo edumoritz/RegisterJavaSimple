@@ -15,7 +15,10 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class BlockPanel extends JPanel {
 	private JPasswordField passwordField;
@@ -58,17 +61,25 @@ public class BlockPanel extends JPanel {
 		gbc_panel.gridy = 0;
 		add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0};
+		gbl_panel.columnWidths = new int[]{0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
+		JLabel lblSenha = new JLabel("Senha:");
+		GridBagConstraints gbc_lblSenha = new GridBagConstraints();
+		gbc_lblSenha.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSenha.anchor = GridBagConstraints.EAST;
+		gbc_lblSenha.gridx = 0;
+		gbc_lblSenha.gridy = 0;
+		panel.add(lblSenha, gbc_lblSenha);
+		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
+		gbc_passwordField.fill = GridBagConstraints.BOTH;
 		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_passwordField.gridx = 0;
+		gbc_passwordField.gridx = 1;
 		gbc_passwordField.gridy = 0;
 		panel.add(passwordField, gbc_passwordField);
 		
@@ -79,20 +90,31 @@ public class BlockPanel extends JPanel {
 			}
 		});
 		GridBagConstraints gbc_btnOk = new GridBagConstraints();
+		gbc_btnOk.gridwidth = 2;
 		gbc_btnOk.gridx = 0;
 		gbc_btnOk.gridy = 1;
 		panel.add(btnOk, gbc_btnOk);
 
 	}
 
-	protected void fechar() {
-		super.setVisible(false);
-		
+	public int fechar() {
 		char[] arrChar = this.passwordField.getPassword();
 		String senha = new String(arrChar);
-		
-		if(this.executaNoFechar != null){
-			this.executaNoFechar.run();
+		System.out.println(senha);
+		if(isPasswordCorrect(arrChar)){
+			super.setVisible(false);
+			
+			if(this.executaNoFechar != null){
+				this.executaNoFechar.run();
+			}
+			return 1;
+		} else {
+			JOptionPane.showMessageDialog(null,
+	                "Invalid password. Try again.",
+	                "Error Message",
+	                JOptionPane.ERROR_MESSAGE);
+			System.out.println("Password Inválido");
+			return 0;
 		}
 	}
 	
@@ -112,5 +134,21 @@ public class BlockPanel extends JPanel {
 	
 	public void noFechar(Runnable runnable){
 		this.executaNoFechar = runnable;
+	}
+	
+	private static boolean isPasswordCorrect(char[] input) {
+	    boolean isCorrect = true;
+	    char[] correctPassword = { '1', '2', '3', '4', '5', '6', '7' };
+
+	    if (input.length != correctPassword.length) {
+	        isCorrect = false;
+	    } else {
+	        isCorrect = Arrays.equals (input, correctPassword);
+	    }
+
+	    //Zero out the password.
+	    Arrays.fill(correctPassword,'0');
+
+	    return isCorrect;
 	}
 }
