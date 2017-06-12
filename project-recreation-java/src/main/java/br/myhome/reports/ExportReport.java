@@ -44,20 +44,6 @@ public class ExportReport {
 	}
 
 	public void exportProduct() {
-		// ClassDao dao = new ClassDao();
-		// List<Produto> list = dao.getTodosP();
-		//
-		// JRDataSource customDs = new CustomProdutoReports(list);
-		//
-		// JasperPrint jp;
-		//
-		// try {
-		// jp = JasperFillManager.fillReport(JASPER_PRODUCT, null, customDs);
-		// Locale locale = Locale.getDefault();
-		// JasperViewer.viewReport(jp, false, locale);
-		// } catch (JRException e) {
-		// e.printStackTrace();
-		// }
 		JasperPrint jasperPrintPDF = getPrintP();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("(yyyy-MM-dd)_HH-mm-ss");

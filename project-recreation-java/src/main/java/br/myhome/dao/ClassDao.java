@@ -32,7 +32,6 @@ public class ClassDao {
 	public List<Contact> getTodosC(){
 		List<Contact> lista = new ArrayList<>();
 		
-		//??
 		try(PreparedStatement ps = con.prepareStatement(SQL_C_BUSCA_TODOS);
 				ResultSet rs = ps.executeQuery()){
 			while(rs.next()){

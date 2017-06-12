@@ -22,9 +22,6 @@ public class ScreenButtons extends JFrame {
 	private JTabbedPane tabbedPane;
 	private BlockPanel login;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
