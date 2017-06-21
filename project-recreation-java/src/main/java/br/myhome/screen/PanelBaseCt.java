@@ -4,6 +4,11 @@ import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -22,6 +27,7 @@ public class PanelBaseCt extends JPanel {
 	protected JButton btnSave;
 	protected JButton btnDelete;
 	protected JLabel lblCarregandoParaAlterao;
+	private JButton btnSearch;
 
 	public PanelBaseCt() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -54,7 +60,7 @@ public class PanelBaseCt extends JPanel {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblId = new JLabel("Id:");
+		JLabel lblId = new JLabel("Id(F2):");
 		GridBagConstraints gbc_lblId = new GridBagConstraints();
 		gbc_lblId.anchor = GridBagConstraints.EAST;
 		gbc_lblId.insets = new Insets(0, 0, 5, 5);
@@ -63,6 +69,15 @@ public class PanelBaseCt extends JPanel {
 		panel.add(lblId, gbc_lblId);
 		
 		txtId = new JTextField();
+		txtId.addKeyListener(new KeyAdapter() {
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_F2){
+					abreBusca();
+				}
+			}
+		});
 		GridBagConstraints gbc_txtId = new GridBagConstraints();
 		gbc_txtId.anchor = GridBagConstraints.WEST;
 		gbc_txtId.insets = new Insets(0, 0, 5, 5);
@@ -123,17 +138,31 @@ public class PanelBaseCt extends JPanel {
 		gbc_panel_1.gridy = 2;
 		add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
+		
+		btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abreBusca();				
+			}
+		});
+		GridBagConstraints gbc_btnSearch = new GridBagConstraints();
+		gbc_btnSearch.insets = new Insets(0, 0, 0, 5);
+		gbc_btnSearch.gridx = 0;
+		gbc_btnSearch.gridy = 0;
+		panel_1.add(btnSearch, gbc_btnSearch);
 		
 		btnNew = new JButton("New");
 		GridBagConstraints gbc_btnNew = new GridBagConstraints();
 		gbc_btnNew.anchor = GridBagConstraints.EAST;
 		gbc_btnNew.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNew.gridx = 0;
+		gbc_btnNew.gridx = 1;
 		gbc_btnNew.gridy = 0;
 		panel_1.add(btnNew, gbc_btnNew);
 		
@@ -141,14 +170,14 @@ public class PanelBaseCt extends JPanel {
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();
 		gbc_btnSave.anchor = GridBagConstraints.EAST;
 		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSave.gridx = 1;
+		gbc_btnSave.gridx = 2;
 		gbc_btnSave.gridy = 0;
 		panel_1.add(btnSave, gbc_btnSave);
 		
 		btnDelete = new JButton("Delete");
 		GridBagConstraints gbc_btnDelete = new GridBagConstraints();
 		gbc_btnDelete.anchor = GridBagConstraints.EAST;
-		gbc_btnDelete.gridx = 2;
+		gbc_btnDelete.gridx = 3;
 		gbc_btnDelete.gridy = 0;
 		panel_1.add(btnDelete, gbc_btnDelete);
 		
@@ -162,6 +191,11 @@ public class PanelBaseCt extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
+	}
+
+	protected void abreBusca() {
+		
+		
 	}
 
 }
