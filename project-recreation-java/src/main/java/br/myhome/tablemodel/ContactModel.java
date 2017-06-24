@@ -9,11 +9,6 @@ public class ContactModel extends AbstractTableModel{
 	
 	private List<Contact> lista;
 	
-	void fillsResult(List<Contact> result){
-		this.lista = result;
-		
-		fireTableDataChanged();
-	}
 	public ContactModel(){
 		this((List<Contact>)null);
 	}
@@ -67,6 +62,12 @@ public class ContactModel extends AbstractTableModel{
 			return null;
 		}
 		return this.lista.get(idx);
+	}
+	
+	public void fillsResult(List<Contact> result){
+		this.lista = result;
+		
+		fireTableDataChanged();
 	}
 	
 

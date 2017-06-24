@@ -146,12 +146,9 @@ public class PanelSearch extends JFrame {
 
 	protected void busca(String palavra) {
 		ClassDao dao = new ClassDao();
-		ContactModel model = new ContactModel();
-		//verificar nova sql
 		List<Contact> lista = dao.filterContact(palavra);
 		
-		table.setModel(model);
-		
+		((ContactModel) table.getModel()).fillsResult(lista);
 	}
 	
 	public void setOnOk(Consumer<Contact> c){

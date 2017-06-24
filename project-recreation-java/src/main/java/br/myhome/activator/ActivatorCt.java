@@ -5,12 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import java.util.function.Consumer;
 
 import br.myhome.dao.ClassDao;
 import br.myhome.pojos.Contact;
 import br.myhome.screen.PanelBaseCt;
-import br.myhome.screen.PanelSearch;
 import br.myhome.tablemodel.ContactModel;
 
 public class ActivatorCt extends PanelBaseCt {

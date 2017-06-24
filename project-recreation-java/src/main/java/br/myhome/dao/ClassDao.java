@@ -51,7 +51,7 @@ public class ClassDao {
 	public List<Contact> filterContact(String palavra){
 		List<Contact> lista = new ArrayList<>();
 		
-		try(PreparedStatement ps = con.prepareStatement(SQL_C_BUSCA_TODOS);
+		try(PreparedStatement ps = con.prepareStatement(SQL_C_FILTER);
 				ResultSet rs = ps.executeQuery()){
 			while(rs.next()){
 				Contact ct = new Contact();
