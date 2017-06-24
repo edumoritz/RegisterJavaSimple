@@ -6,9 +6,14 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 
+import br.myhome.dao.ClassDao;
 import br.myhome.pojos.Contact;
+import br.myhome.tablemodel.ContactModel;
 
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.List;
 import java.util.function.Consumer;
 
 import javax.swing.JScrollPane;
@@ -64,7 +69,75 @@ public class SearchPanel extends JPanel {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		
+		// $hide>>$
+		configureTable();
+		// $hide<<$
 
+	}
+
+	private void configureTable() {
+		ContactModel model = new ContactModel();
+		table.setModel(model);
+		
+		textField.addKeyListener(new KeyAdapter() {
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					busca(textField.getText().trim());
+				}
+				if(e.getKeyCode() == KeyEvent.VK_DOWN){
+					table.getSelectionModel().addSelectionInterval(0, 0);
+					textField.transferFocus();
+				}
+				if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+					if(SearchPanel.this.runnableOnCancel != null){
+						SearchPanel.this.runnableOnCancel.run();
+					}
+				}
+			}
+		});
+		
+		table.addKeyListener(new KeyAdapter() {
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_UP){
+					table.transferFocusBackward();
+				}
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					e.consume();
+					
+					int idx = table.getSelectedRow();
+					if(idx != -1){
+						Contact ct = ((ContactModel)table.getModel()).getContactAt(idx);
+						if(ct == null){
+							return;
+						}
+						SearchPanel.this.consumerOnOk.accept(ct);
+					}
+				}
+				
+				if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+					if(SearchPanel.this.runnableOnCancel != null){
+						SearchPanel.this.runnableOnCancel.run();
+					}
+				}
+				
+			}
+		});
+		
+	}
+
+	protected void busca(String trim) {
+		ClassDao dao = new ClassDao();
+		//verificar nova sql
+		List<Contact> lista = dao.getTodosC();
+		
+		//table.getModel().
+		
 	}
 
 }

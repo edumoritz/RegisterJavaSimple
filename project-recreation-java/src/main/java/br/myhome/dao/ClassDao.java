@@ -18,12 +18,14 @@ public class ClassDao {
 	private static final String SQL_C_EXCLUI ="DELETE FROM contact WHERE id = ?";
 	private static final String SQL_C_ATUALIZA_NOME = "UPDATE contact SET nome = ? WHERE id = ?";
 	private static final String SQL_C_ATUALIZA_TEL = "UPDATE contact SET telefone = ? WHERE id = ?";
+	private static final String SQL_C_FILTER = "SELECT * FROM contact WHERE nome LIKE '%?%'";
 	/*SQL Product*/
 	private static final String SQL_P_BUSCA_TODOS = "SELECT * FROM Product ORDER BY id";
 	private static final String SQL_P_INSERE = "INSERT INTO Product(id, nome, valor) VALUES(?, ?, ?)";
 	private static final String SQL_P_EXCLUI = "DELETE FROM Product WHERE id = ?";
 	private static final String SQL_P_ATUALIZA_NOME = "UPDATE Product SET nome = ? WHERE id = ?";
 	private static final String SQL_P_ATUALIZA_VAL = "UPDATE Product SET valor = ? WHERE id = ?";
+	private static final String SQL_P_FILTER = "SELECT * FROM product WHERE nome LIKE '%?%'";
 	
 	private Connection con = ConectionBD.getInstance().getConnection();
 	
@@ -44,6 +46,24 @@ public class ClassDao {
 		} catch(SQLException e){
 			e.printStackTrace();
 		}
+		return lista;
+	}
+	public List<Contact> filterContact(String palavra){
+		List<Contact> lista = new ArrayList<>();
+		
+		try(PreparedStatement ps = con.prepareStatement(SQL_C_BUSCA_TODOS);
+				ResultSet rs = ps.executeQuery()){
+			while(rs.next()){
+				Contact ct = new Contact();
+				ct.setId(rs.getInt(1));
+				ct.setNome(rs.getString(2));
+				ct.setTelefone(rs.getString(3));
+				lista.add(ct);
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		
 		return lista;
 	}
 	public void insereC(Contact c){

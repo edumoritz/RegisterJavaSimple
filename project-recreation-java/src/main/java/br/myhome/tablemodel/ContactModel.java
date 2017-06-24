@@ -9,6 +9,15 @@ public class ContactModel extends AbstractTableModel{
 	
 	private List<Contact> lista;
 	
+	void fillsResult(List<Contact> result){
+		this.lista = result;
+		
+		fireTableDataChanged();
+	}
+	public ContactModel(){
+		this((List<Contact>)null);
+	}
+	
 	public ContactModel(List<Contact> list) {
 		if(list == null){
 			this.lista = new ArrayList<>();
@@ -52,6 +61,12 @@ public class ContactModel extends AbstractTableModel{
 	public void remove(Contact contatoSelecionado){
 		this.lista.remove(contatoSelecionado);
 		super.fireTableDataChanged();
+	}
+	public Contact getContactAt(int idx){
+		if (idx >= this.lista.size()) {
+			return null;
+		}
+		return this.lista.get(idx);
 	}
 	
 
