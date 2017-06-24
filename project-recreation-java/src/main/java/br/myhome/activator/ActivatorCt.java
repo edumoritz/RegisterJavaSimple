@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.function.Consumer;
 
 import br.myhome.dao.ClassDao;
 import br.myhome.pojos.Contact;
 import br.myhome.screen.PanelBaseCt;
+import br.myhome.screen.PanelSearch;
 import br.myhome.tablemodel.ContactModel;
 
 public class ActivatorCt extends PanelBaseCt {
@@ -23,7 +25,7 @@ public class ActivatorCt extends PanelBaseCt {
 		configureButtons();
 		configureTable();
 	}
-
+	
 	private void configureTable() {
 		ClassDao dao = new ClassDao();
 		List<Contact> list = dao.getTodosC();
@@ -139,6 +141,11 @@ public class ActivatorCt extends PanelBaseCt {
 		super.txtTelefone.setText("");
 
 		super.btnDelete.setEnabled(false);
+	}
+	protected void fills(Contact ct){
+		txtId.setText(String.valueOf(ct.getId()));
+		txtNome.setText(ct.getNome());
+		txtTelefone.setText(ct.getTelefone());
 	}
 
 }

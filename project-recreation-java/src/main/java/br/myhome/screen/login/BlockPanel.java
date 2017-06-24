@@ -138,7 +138,7 @@ public class BlockPanel extends JPanel {
 	
 	private static boolean isPasswordCorrect(char[] input) {
 	    boolean isCorrect = true;
-	    char[] correctPassword = { '1', '2', '3', '4', '5', '6', '7' };
+	    char[] correctPassword = { '1', '2', '3' };
 
 	    if (input.length != correctPassword.length) {
 	        isCorrect = false;

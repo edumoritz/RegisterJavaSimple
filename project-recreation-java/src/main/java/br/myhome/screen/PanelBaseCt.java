@@ -8,10 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.function.Consumer;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import br.myhome.activator.ActivatorCt;
+import br.myhome.pojos.Contact;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -27,7 +32,7 @@ public class PanelBaseCt extends JPanel {
 	protected JButton btnSave;
 	protected JButton btnDelete;
 	protected JLabel lblCarregandoParaAlterao;
-	private JButton btnSearch;
+	protected JButton btnSearch;
 
 	public PanelBaseCt() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -74,7 +79,7 @@ public class PanelBaseCt extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_F2){
-					abreBusca();
+					openSearch();
 				}
 			}
 		});
@@ -149,7 +154,7 @@ public class PanelBaseCt extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				abreBusca();				
+				openSearch();
 			}
 		});
 		GridBagConstraints gbc_btnSearch = new GridBagConstraints();
@@ -193,9 +198,37 @@ public class PanelBaseCt extends JPanel {
 
 	}
 
-	protected void abreBusca() {
+	protected void openSearch() {
+		PanelSearch panel = new PanelSearch();
 		
-		
+		panel.setOnOk(new Consumer<Contact>() {
+			
+			@Override
+			public void accept(Contact t) {
+				//getGlassPane().setVisible(false);
+				fills(t);
+			}
+		});
+		panel.setOnCancel(new Runnable() {
+			
+			@Override
+			public void run() {
+				clear();
+				//getGlassPane().setVisible(false);				
+			}
+		});
+		//setGlassPane(panel);
+		panel.setVisible(true);
+	}
+	protected void clear() {
+		txtId.setText("");
+		txtNome.setText("");
+		txtTelefone.setText("");
+	}
+	protected void fills(Contact ct){
+		txtId.setText(String.valueOf(ct.getId()));
+		txtNome.setText(ct.getNome());
+		txtTelefone.setText(ct.getTelefone());
 	}
 
 }
