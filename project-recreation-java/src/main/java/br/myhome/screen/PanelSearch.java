@@ -31,7 +31,6 @@ public class PanelSearch extends JFrame {
 
 	public PanelSearch() {
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -146,9 +145,13 @@ public class PanelSearch extends JFrame {
 
 	protected void busca(String palavra) {
 		ClassDao dao = new ClassDao();
+		
 		List<Contact> lista = dao.filterContact(palavra);
 		
+		
 		((ContactModel) table.getModel()).fillsResult(lista);
+		
+		
 	}
 	
 	public void setOnOk(Consumer<Contact> c){

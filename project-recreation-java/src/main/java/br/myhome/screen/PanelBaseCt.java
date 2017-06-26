@@ -205,7 +205,8 @@ public class PanelBaseCt extends JPanel {
 			
 			@Override
 			public void accept(Contact t) {
-				//getGlassPane().setVisible(false);
+				PanelSearch panel = new PanelSearch();
+				panel.getGlassPane().setVisible(false);
 				fills(t);
 			}
 		});
