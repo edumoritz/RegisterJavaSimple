@@ -27,7 +27,34 @@ public class ClassDao {
 	private static final String SQL_P_ATUALIZA_VAL = "UPDATE Product SET valor = ? WHERE id = ?";
 	private static final String SQL_P_FILTER = "SELECT * FROM product WHERE nome LIKE '%?%'";
 	
+	
 	private Connection con = ConectionBD.getInstance().getConnection();
+	
+	/*====================================================================================*/
+	/*CREATE TABLE*/
+	@SuppressWarnings("resource")
+	public void createTable() {
+		PreparedStatement ps = null;
+		String createTableSQLProd = "CREATE TABLE IF NOT EXISTS product("
+				+ "ID NUMERIC(5) NOT NULL, "
+				+ "NOME VARCHAR(20) NOT NULL, "
+				+ "VALOR VARCHAR(20) NOT NULL, " + "PRIMARY KEY (ID) "
+				+ ")";
+		String createTableSQL = "CREATE TABLE IF NOT EXISTS contact("
+				+ "ID NUMERIC(5) NOT NULL, "
+				+ "NOME VARCHAR(20) NOT NULL, "
+				+ "TELEFONE VARCHAR(20) NOT NULL, " + "PRIMARY KEY (ID) "
+				+ ")";
+		try {
+			ps = con.prepareStatement(createTableSQL);
+			ps.executeUpdate();
+			ps = con.prepareStatement(createTableSQLProd);
+			ps.executeUpdate();
+			
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		} 
+	}
 	
 	/*====================================================================================*/	
 	/*As SQL Contact*/	

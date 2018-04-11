@@ -3,11 +3,17 @@ package br.myhome.tablemodel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+
+import br.myhome.pojos.Contact;
 import br.myhome.pojos.Product;
 
 public class ProductModel extends AbstractTableModel{
 	
 	private List<Product> lista;
+	
+	public ProductModel(){
+		this((List<Product>)null);
+	}
 
 	public ProductModel(List<Product> list) {
 		if(list == null){

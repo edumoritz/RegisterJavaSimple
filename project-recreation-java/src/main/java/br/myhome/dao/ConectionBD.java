@@ -16,9 +16,7 @@ public final class ConectionBD {
 			this.con = DriverManager
 					.getConnection(
 							"jdbc:postgresql://localhost:5432/cadastros", 
-							"postgres", "banco");
-			
-			
+							"postgres", "postgres");
 			Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 				
 				public void run() {
@@ -31,7 +29,6 @@ public final class ConectionBD {
 					
 				}
 			}));
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

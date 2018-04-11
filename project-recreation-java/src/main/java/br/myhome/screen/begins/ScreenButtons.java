@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import br.myhome.activator.ActivatorCt;
 import br.myhome.activator.ActivatorPt;
+import br.myhome.dao.ClassDao;
 import br.myhome.reports.ExportReport;
 import br.myhome.screen.PanelWrepper;
 import br.myhome.screen.login.BlockPanel;

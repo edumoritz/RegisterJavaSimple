@@ -26,6 +26,9 @@ public class ActivatorCt extends PanelBaseCt {
 	
 	private void configureTable() {
 		ClassDao dao = new ClassDao();
+		
+		dao.createTable();
+		
 		List<Contact> list = dao.getTodosC();
 
 		this.tableModel = new ContactModel(list);
